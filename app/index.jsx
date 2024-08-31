@@ -50,7 +50,7 @@ const Index = () => {
   return (
     <View style={styles.container}>
       <Image source={logo} style={styles.logo} />
-      <Text style={styles.title}>Welcome to AMS</Text>
+      <Text style={styles.title}>Welcome to EMS</Text>
       <Animated.View style={[styles.buttonContainer, animatedButtonStyle]}>
         <TouchableOpacity
           style={styles.button}

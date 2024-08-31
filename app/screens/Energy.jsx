@@ -10,18 +10,18 @@ const Ponds = () => {
   useEffect(() => {
     const fetchSensorData = async () => {
       try {
-        const response = await fetch('https://energybackend.onrender.com/api/sensordata');
+        const response = await fetch('https://energybackend-v86d.onrender.com/api/sensordata1');
         const data = await response.json();
         if (response.ok) {
           setSensorData(data);
           // Navigate to AlarmPage if Power_factor is below 0.8
-          if (data.Power_factor < 0.9) {
+          if (data.AvgPowerFactor < 1) {
             navigation.navigate('screens/AlarmPage');
           }
         } else {
           console.error('Failed to fetch API data:', data.message);
         }
-      } catch (error) {
+      } catch (error) {           
         console.error('Error fetching API data:', error);
       } finally {
         setLoading(false);
@@ -47,19 +47,19 @@ const Ponds = () => {
     );
   }
 
-  const powerFactorColor = sensorData.Power_factor >= 0.9 ? 'green' : 'red';
+  const powerFactorColor = sensorData.AvgPowerFactor >= 1 ? 'green' : 'red';
 
   return (
     <ScrollView style={styles.container}>
-      {sensorData.Power_factor !== undefined && (
-        <View key="Power_factor" style={styles.detailRow}>
+      {sensorData.AvgPowerFactor !== undefined && (
+        <View key="AvgPowerFactor" style={styles.detailRow}>
           <Text style={[styles.detailValue, { color: powerFactorColor }]}>
-            {`Power Factor: ${sensorData.Power_factor}`}
+            {`Power Factor: ${sensorData.AvgPowerFactor}`}
           </Text>
         </View>
       )}
       {Object.entries(sensorData)
-        .filter(([key]) => key !== 'Power_factor')
+        .filter(([key]) => key !== 'AvgPowerFactor')
         .map(([key, value]) => (
           <View key={key} style={styles.detailRow}>
             <Text style={styles.detailValue}>{`${key}: ${value}`}</Text>
