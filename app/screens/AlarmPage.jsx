@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
-import { Audio } from 'expo-av'; // Make sure to install expo-av for sound
+import { Audio } from 'expo-av'; 
 import { useRouter } from 'expo-router';
 
 const AlarmPage = () => {
